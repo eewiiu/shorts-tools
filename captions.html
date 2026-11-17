@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#07090d"><title>محرر النصوص</title><style>:root{--ac:#22c55e;--ac2:#2dd4bf;--g1:rgba(34,197,94,.20);--g2:rgba(45,212,191,.10)}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--bg:#07090d;--s1:#0d1117;--s2:#151b25;--line:#232b38;--tx:#eaf0f7;--mu:#8693a6}
+html{background:var(--bg)}
+body{margin:0;min-height:100vh;color:var(--tx);font-family:"Segoe UI","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+background:radial-gradient(800px 460px at 90% -8%,var(--g1),transparent),radial-gradient(640px 380px at -10% 108%,var(--g2),transparent),var(--bg);
+padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+.app{max-width:600px;margin:auto;padding:16px 16px 48px}
+.top{display:flex;align-items:center;gap:12px;margin:6px 0 18px}
+.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,var(--ac),var(--ac2));display:grid;place-items:center;box-shadow:0 8px 26px var(--g1);flex:none}
+.logo svg,.ring svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.top h1{margin:0;font-size:19px}.top p{margin:3px 0 0;color:var(--mu);font-size:12.5px}
+.empty{border:1.5px dashed var(--line);border-radius:24px;padding:46px 20px;text-align:center;background:rgba(255,255,255,.02)}
+.ring{width:72px;height:72px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--ac),var(--ac2));box-shadow:0 0 0 10px var(--g1)}
+.ring svg{width:30px;height:30px}.empty h2{margin:0 0 6px;font-size:18px}
+.btn{white-space:nowrap;appearance:none;border:0;border-radius:14px;padding:13px 18px;font:600 15px "Segoe UI","Noto Sans Arabic",system-ui,sans-serif;color:#fff;background:linear-gradient(135deg,var(--ac),var(--ac2));box-shadow:0 8px 22px var(--g1);display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer}
+.btn.gh{background:var(--s2);box-shadow:none;border:1px solid var(--line);color:var(--tx)}
+.btn.sm{padding:8px 12px;font-size:13px;border-radius:11px}.btn.w{width:100%}
+.card{background:linear-gradient(180deg,var(--s2),var(--s1));border:1px solid var(--line);border-radius:20px;padding:14px;margin:12px 0}
+.card h3{margin:0 0 10px;font-size:12.5px;color:var(--mu);font-weight:600;letter-spacing:.4px}
+.stage{border-radius:16px;overflow:hidden;background:#000;border:1px solid var(--line)}
+canvas,video{display:block;width:100%}.stage canvas,.stage video{max-height:52vh;object-fit:contain}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:10px}
+.lab{font-size:13px;color:var(--mu);margin:14px 0 8px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.lab b{color:var(--tx);direction:ltr;font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:9px;background:var(--line);outline:0;direction:ltr}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:5px solid var(--ac);box-shadow:0 2px 8px #0009}
+input[type=text],input[type=number],select{background:var(--s1);color:var(--tx);border:1px solid var(--line);border-radius:11px;padding:10px;font:inherit;font-size:14px;max-width:100%}
+input[type=color]{width:44px;height:36px;border:0;background:none;padding:0}input[type=checkbox]{accent-color:var(--ac);width:18px;height:18px}
+.seg{display:flex;gap:6px;flex-wrap:wrap}.seg button{flex:1;min-width:60px;appearance:none;border:1px solid var(--line);background:var(--s1);color:var(--tx);border-radius:11px;padding:10px 6px;font:inherit;font-size:14px}
+.seg button.on{background:linear-gradient(135deg,var(--ac),var(--ac2));border-color:transparent;color:#fff;font-weight:700}
+.pill{color:var(--mu);font-size:13px;min-height:20px;margin:10px 2px}.hint{font-size:12px;color:var(--mu);line-height:1.7}
+a.dl{display:flex;justify-content:center;margin-top:10px;padding:14px;border-radius:14px;background:#22c55e;color:#04210f;font-weight:700;text-decoration:none}
+#ui{display:none}
+#tl{position:relative;height:10px;background:var(--line);border-radius:9px;direction:ltr;overflow:hidden;margin-bottom:4px}
+#tf{position:absolute;top:0;bottom:0;background:linear-gradient(90deg,var(--ac),var(--ac2));border-radius:9px}
+#ch{height:170px;background:var(--s1);border-radius:12px;direction:ltr}
+#top{padding:0;margin:0 0 10px;list-style:none}
+#top li{display:flex;justify-content:space-between;align-items:center;background:var(--s1);border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin:6px 0;font-variant-numeric:tabular-nums}
+#top button{appearance:none;border:1px solid var(--line);background:var(--s2);color:var(--tx);border-radius:10px;padding:6px 12px;font:inherit;font-size:13px}
+.ln{border-top:1px solid var(--line);padding:10px 0}.ln:first-child{border-top:0}
+</style></head><body><div class="app"><div class="top"><div class="logo"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg></div><div><h1>محرر النصوص</h1><p>أضف نصوصاً بالخط والحجم والمكان الذي تريد</p></div><input id="f" type="file" accept="video/*" hidden><label for="f" class="btn gh sm" style="margin-inline-start:auto">فيديو جديد</label></div><div class="empty" id="empty"><div class="ring"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg></div><h2>ابدأ بإضافة فيديو</h2><p class="hint">كل المعالجة تتم على جهازك، لا يُرفع شيء إلى الإنترنت.</p><label for="f" class="btn">اختر من الهاتف</label></div><video id="v" playsinline style="display:none"></video><div id="ui">
+<div class="card"><div class="stage"><canvas id="cv"></canvas></div><div class="row"><button class="btn gh sm" id="pl">▶ تشغيل / إيقاف</button><input id="p" type="range" min="0" step="0.1" value="0" style="flex:1;min-width:140px"></div></div>
+<div class="card"><h3>النصوص</h3><div id="ls"></div><button class="btn gh w" id="add" style="margin-top:8px">+ نص جديد عند الموضع الحالي</button></div>
+<div class="card"><h3>التنسيق</h3><div class="row" style="margin-top:0"><select id="ft"><option>Arial</option><option>Tahoma</option><option>Impact</option><option>Georgia</option><option>Courier New</option><option>Noto Naskh Arabic</option><option>sans-serif</option><option>serif</option></select>
+<label class="row" style="margin:0"><input type="checkbox" id="bd" checked> غامق</label></div>
+<div class="lab"><span>الحجم</span></div><input id="sz" type="range" min="3" max="15" step="0.5" value="7">
+<div class="lab"><span>الموضع الرأسي</span></div><input id="y" type="range" min="5" max="95" value="75">
+<div class="row"><span class="hint">لون النص</span><input id="c1" type="color" value="#ffffff"><span class="hint">لون الحدود</span><input id="c2" type="color" value="#000000"></div></div>
+<button id="go" class="btn w">تصدير الفيديو بالنصوص</button><div class="pill" id="st"></div><div id="out"></div></div></div><script>
+async function saveBlob(b,n){const P=window.Capacitor&&window.Capacitor.Plugins;
+if(P&&P.Filesystem&&P.Share){const d=await new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result.split(',')[1]);f.readAsDataURL(b)});
+const w=await P.Filesystem.writeFile({path:n,data:d,directory:'CACHE'});await P.Share.share({url:w.uri,dialogTitle:'حفظ / مشاركة'})}
+else{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;a.click()}}
+
+const $=i=>document.getElementById(i),v=$('v'),cv=$('cv'),ctx=cv.getContext('2d');let L=[],rec=false;
+$('f').onchange=e=>{const f=e.target.files[0];if(f)v.src=URL.createObjectURL(f)};
+v.onloadedmetadata=()=>{$('p').max=v.duration;const k=Math.min(1,720/v.videoWidth,1280/v.videoHeight);cv.width=Math.round(v.videoWidth*k/2)*2;cv.height=Math.round(v.videoHeight*k/2)*2;$('ui').style.display='block';v.currentTime=0};
+function wrap(t,mw){const w=t.split(' '),o=[];let l='';w.forEach(x=>{const n=l?l+' '+x:x;if(ctx.measureText(n).width>mw&&l){o.push(l);l=x}else l=n});o.push(l);return o}
+function draw(){ctx.drawImage(v,0,0,cv.width,cv.height);const t=v.currentTime,sz=cv.width*$('sz').value/100;
+ctx.font=($('bd').checked?'bold ':'')+sz+'px '+$('ft').value+',sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.lineJoin='round';ctx.lineWidth=sz/5;
+L.filter(l=>t>=l.s&&t<=l.e&&l.t).forEach(l=>{const ls=wrap(l.t,cv.width*.9),y0=cv.height*$('y').value/100-(ls.length-1)*sz*.6;
+ls.forEach((s,i)=>{const y=y0+i*sz*1.2;ctx.strokeStyle=$('c2').value;ctx.strokeText(s,cv.width/2,y);ctx.fillStyle=$('c1').value;ctx.fillText(s,cv.width/2,y)})})}
+v.onseeked=draw;['ft','bd','sz','y','c1','c2'].forEach(i=>$(i).oninput=draw);
+function list(){$('ls').innerHTML='';L.forEach((l,i)=>{const d=document.createElement('div');d.className='ln';
+d.innerHTML='<input type="text" style="width:100%" placeholder="اكتب النص" value="'+l.t.replace(/"/g,'&quot;')+'">من <input type="number" step="0.1" style="width:70px" value="'+l.s+'"> إلى <input type="number" step="0.1" style="width:70px" value="'+l.e+'"> <button class="g">حذف</button>';
+const q=d.querySelectorAll('input');q[0].oninput=()=>{l.t=q[0].value;draw()};q[1].oninput=()=>{l.s=+q[1].value;draw()};q[2].oninput=()=>{l.e=+q[2].value;draw()};
+d.querySelector('button').onclick=()=>{L.splice(i,1);list();draw()};$('ls').append(d)})}
+$('add').onclick=()=>{const s=+v.currentTime.toFixed(1);L.push({t:'',s,e:Math.min(+(s+2).toFixed(1),+v.duration.toFixed(1))});list()};
+$('p').oninput=()=>v.currentTime=+$('p').value;
+$('pl').onclick=()=>{if(v.paused){v.play();(function T(){draw();$('p').value=v.currentTime;if(!v.paused&&!rec)requestAnimationFrame(T)})()}else v.pause()};
+$('go').onclick=async()=>{v.pause();v.currentTime=0;await new Promise(r=>v.addEventListener('seeked',r,{once:true}));
+const cs=cv.captureStream(30),vs=v.captureStream?v.captureStream():v.mozCaptureStream();vs.getAudioTracks().forEach(t=>cs.addTrack(t));
+const mt=['video/mp4','video/webm;codecs=vp9,opus','video/webm'].find(m=>MediaRecorder.isTypeSupported(m));
+const R=new MediaRecorder(cs,{mimeType:mt,videoBitsPerSecond:6e6}),ch=[];R.ondataavailable=x=>ch.push(x.data);
+R.onstop=()=>{rec=false;const b=new Blob(ch,{type:mt}),n='captioned.'+(mt.includes('mp4')?'mp4':'webm'),a=document.createElement('a');a.href='#';a.className='dl';a.textContent='⬇ حفظ / مشاركة الفيديو';a.onclick=e=>{e.preventDefault();saveBlob(b,n)};$('out').innerHTML='';$('out').append(a);$('st').textContent='تم ✅'};
+rec=true;R.start();v.play();(function T(){draw();$('st').textContent='جارٍ التصدير… '+Math.round(v.currentTime/v.duration*100)+'%';if(v.ended){R.stop();return}requestAnimationFrame(T)})()};
+document.querySelectorAll('select.seg').forEach(s=>{s.style.display='none';const w=document.createElement('div');w.className='seg';
+function sync(){[...w.children].forEach((b,i)=>b.classList.toggle('on',s.options[i].value==s.value))}
+[...s.options].forEach(o=>{const b=document.createElement('button');b.textContent=o.text;b.onclick=()=>{s.value=o.value;sync();s.oninput&&s.oninput()};w.append(b)});s.after(w);sync()});
+document.querySelector('video').addEventListener('loadedmetadata',()=>{document.getElementById('empty').style.display='none'});
+</script></body></html>

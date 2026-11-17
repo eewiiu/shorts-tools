@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#07090d"><title>تحليل الإثارة</title><style>:root{--ac:#7c83ff;--ac2:#38bdf8;--g1:rgba(124,131,255,.22);--g2:rgba(56,189,248,.10)}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--bg:#07090d;--s1:#0d1117;--s2:#151b25;--line:#232b38;--tx:#eaf0f7;--mu:#8693a6}
+html{background:var(--bg)}
+body{margin:0;min-height:100vh;color:var(--tx);font-family:"Segoe UI","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+background:radial-gradient(800px 460px at 90% -8%,var(--g1),transparent),radial-gradient(640px 380px at -10% 108%,var(--g2),transparent),var(--bg);
+padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+.app{max-width:600px;margin:auto;padding:16px 16px 48px}
+.top{display:flex;align-items:center;gap:12px;margin:6px 0 18px}
+.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,var(--ac),var(--ac2));display:grid;place-items:center;box-shadow:0 8px 26px var(--g1);flex:none}
+.logo svg,.ring svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.top h1{margin:0;font-size:19px}.top p{margin:3px 0 0;color:var(--mu);font-size:12.5px}
+.empty{border:1.5px dashed var(--line);border-radius:24px;padding:46px 20px;text-align:center;background:rgba(255,255,255,.02)}
+.ring{width:72px;height:72px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--ac),var(--ac2));box-shadow:0 0 0 10px var(--g1)}
+.ring svg{width:30px;height:30px}.empty h2{margin:0 0 6px;font-size:18px}
+.btn{white-space:nowrap;appearance:none;border:0;border-radius:14px;padding:13px 18px;font:600 15px "Segoe UI","Noto Sans Arabic",system-ui,sans-serif;color:#fff;background:linear-gradient(135deg,var(--ac),var(--ac2));box-shadow:0 8px 22px var(--g1);display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer}
+.btn.gh{background:var(--s2);box-shadow:none;border:1px solid var(--line);color:var(--tx)}
+.btn.sm{padding:8px 12px;font-size:13px;border-radius:11px}.btn.w{width:100%}
+.card{background:linear-gradient(180deg,var(--s2),var(--s1));border:1px solid var(--line);border-radius:20px;padding:14px;margin:12px 0}
+.card h3{margin:0 0 10px;font-size:12.5px;color:var(--mu);font-weight:600;letter-spacing:.4px}
+.stage{border-radius:16px;overflow:hidden;background:#000;border:1px solid var(--line)}
+canvas,video{display:block;width:100%}.stage canvas,.stage video{max-height:52vh;object-fit:contain}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:10px}
+.lab{font-size:13px;color:var(--mu);margin:14px 0 8px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.lab b{color:var(--tx);direction:ltr;font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:9px;background:var(--line);outline:0;direction:ltr}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:5px solid var(--ac);box-shadow:0 2px 8px #0009}
+input[type=text],input[type=number],select{background:var(--s1);color:var(--tx);border:1px solid var(--line);border-radius:11px;padding:10px;font:inherit;font-size:14px;max-width:100%}
+input[type=color]{width:44px;height:36px;border:0;background:none;padding:0}input[type=checkbox]{accent-color:var(--ac);width:18px;height:18px}
+.seg{display:flex;gap:6px;flex-wrap:wrap}.seg button{flex:1;min-width:60px;appearance:none;border:1px solid var(--line);background:var(--s1);color:var(--tx);border-radius:11px;padding:10px 6px;font:inherit;font-size:14px}
+.seg button.on{background:linear-gradient(135deg,var(--ac),var(--ac2));border-color:transparent;color:#fff;font-weight:700}
+.pill{color:var(--mu);font-size:13px;min-height:20px;margin:10px 2px}.hint{font-size:12px;color:var(--mu);line-height:1.7}
+a.dl{display:flex;justify-content:center;margin-top:10px;padding:14px;border-radius:14px;background:#22c55e;color:#04210f;font-weight:700;text-decoration:none}
+#ui{display:none}
+#tl{position:relative;height:10px;background:var(--line);border-radius:9px;direction:ltr;overflow:hidden;margin-bottom:4px}
+#tf{position:absolute;top:0;bottom:0;background:linear-gradient(90deg,var(--ac),var(--ac2));border-radius:9px}
+#ch{height:170px;background:var(--s1);border-radius:12px;direction:ltr}
+#top{padding:0;margin:0 0 10px;list-style:none}
+#top li{display:flex;justify-content:space-between;align-items:center;background:var(--s1);border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin:6px 0;font-variant-numeric:tabular-nums}
+#top button{appearance:none;border:1px solid var(--line);background:var(--s2);color:var(--tx);border-radius:10px;padding:6px 12px;font:inherit;font-size:13px}
+.ln{border-top:1px solid var(--line);padding:10px 0}.ln:first-child{border-top:0}
+</style></head><body><div class="app"><div class="top"><div class="logo"><svg viewBox="0 0 24 24"><path d="M5 20v-6M12 20V5M19 20v-9"/></svg></div><div><h1>تحليل الإثارة</h1><p>اكتشف أقوى لحظات الفيديو دون قص</p></div><input id="f" type="file" accept="video/*" hidden><label for="f" class="btn gh sm" style="margin-inline-start:auto">فيديو جديد</label></div><div class="empty" id="empty"><div class="ring"><svg viewBox="0 0 24 24"><path d="M5 20v-6M12 20V5M19 20v-9"/></svg></div><h2>ابدأ بإضافة فيديو</h2><p class="hint">كل المعالجة تتم على جهازك، لا يُرفع شيء إلى الإنترنت.</p><label for="f" class="btn">اختر من الهاتف</label></div><div id="ui"><div class="card"><div class="stage"><video id="v" controls playsinline></video></div></div>
+<button id="go" class="btn w">حلّل الفيديو</button><div class="pill" id="st"></div>
+<div class="card" id="res" style="display:none"><h3>خريطة الإثارة</h3><canvas id="ch"></canvas>
+<p class="hint">الارتفاع = الإثارة (صوت + حركة). المضيئة هي أقوى 3 لحظات. اضغط على أي شريط للانتقال إليه.</p>
+<h3>أقوى اللحظات</h3><ol id="top"></ol><h3>فترات الصمت</h3><div id="sil" class="hint"></div>
+<button id="th" class="btn gh w" style="margin-top:14px">🖼 حفظ أفضل لقطة كصورة مصغرة</button></div></div></div><script>
+async function saveBlob(b,n){const P=window.Capacitor&&window.Capacitor.Plugins;
+if(P&&P.Filesystem&&P.Share){const d=await new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result.split(',')[1]);f.readAsDataURL(b)});
+const w=await P.Filesystem.writeFile({path:n,data:d,directory:'CACHE'});await P.Share.share({url:w.uri,dialogTitle:'حفظ / مشاركة'})}
+else{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;a.click()}}
+
+const $=i=>document.getElementById(i),v=$('v');let file,sc=[],top3=[];
+$('f').onchange=e=>{file=e.target.files[0];if(file){v.src=URL.createObjectURL(file);$('ui').style.display='block'}};
+const fmt=t=>Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0');
+const norm=a=>{const m=Math.max(...a)||1;return a.map(x=>x/m)};
+$('go').onclick=async()=>{try{
+$('st').textContent='تحليل الصوت…';const ac=new (window.AudioContext||window.webkitAudioContext)();
+const buf=await ac.decodeAudioData(await file.arrayBuffer()),d=buf.channelData?0:0,ch=buf.getChannelData(0),sr=buf.sampleRate,N=Math.ceil(buf.duration);
+const au=[];for(let i=0;i<N;i++){let s=0,n=0;for(let j=i*sr;j<Math.min((i+1)*sr,ch.length);j+=8){s+=ch[j]*ch[j];n++}au.push(Math.sqrt(s/(n||1)))}
+$('st').textContent='تحليل الحركة…';const c=document.createElement('canvas');c.width=c.height=32;const x=c.getContext('2d',{willReadFrequently:true});
+const mo=[];let prev=null;for(let i=0;i<N;i++){v.currentTime=Math.min(i+.5,v.duration-.05);await new Promise(r=>v.addEventListener('seeked',r,{once:true}));
+x.drawImage(v,0,0,32,32);const px=x.getImageData(0,0,32,32).data;let df=0;if(prev)for(let k=0;k<px.length;k+=4)df+=Math.abs(px[k]-prev[k]);mo.push(df);prev=px;$('st').textContent='تحليل الحركة '+i+'/'+N}
+const a=norm(au),m=norm(mo);sc=a.map((q,i)=>.6*q+.4*m[i]);
+const idx=sc.map((s,i)=>i).sort((p,q)=>sc[q]-sc[p]);top3=[];for(const i of idx){if(top3.every(t=>Math.abs(t-i)>3))top3.push(i);if(top3.length==3)break}
+$('top').innerHTML='';top3.forEach(i=>{const l=document.createElement('li');l.innerHTML=fmt(i)+' — '+Math.round(sc[i]*100)+'% ';const b=document.createElement('button');b.textContent='اذهب';b.onclick=()=>{v.currentTime=i;v.play()};l.append(b);$('top').append(l)});
+const th=.08*Math.max(...au),sl=[];let st=null;au.forEach((q,i)=>{if(q<th){if(st===null)st=i}else{if(st!==null&&i-st>=2)sl.push([st,i]);st=null}});if(st!==null&&N-st>=2)sl.push([st,N]);
+$('sil').textContent=sl.length?sl.map(s=>fmt(s[0])+'–'+fmt(s[1])).join(' ، '):'لا توجد فترات صمت طويلة';
+$('res').style.display='block';$('st').textContent='تم ✅';plot()}catch(e){$('st').textContent='تعذّر التحليل: '+e.message}};
+function plot(){const c=$('ch'),W=c.width=c.clientWidth*2,H=c.height=320,x=c.getContext('2d');x.clearRect(0,0,W,H);const w=W/sc.length;
+sc.forEach((s,i)=>{x.fillStyle=top3.includes(i)?'#fbbf24':'#4b56a8';const h=Math.max(4,s*(H-10));x.fillRect(i*w+1,H-h,Math.max(1,w-2),h)})}
+$('ch').onclick=e=>{const r=e.target.getBoundingClientRect();v.currentTime=Math.floor((e.clientX-r.left)/r.width*sc.length)};
+$('th').onclick=async()=>{v.pause();v.currentTime=top3[0]+.5;await new Promise(r=>v.addEventListener('seeked',r,{once:true}));
+const c=document.createElement('canvas');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);
+c.toBlob(b=>saveBlob(b,'thumbnail.jpg'),'image/jpeg',.92)};
+document.querySelectorAll('select.seg').forEach(s=>{s.style.display='none';const w=document.createElement('div');w.className='seg';
+function sync(){[...w.children].forEach((b,i)=>b.classList.toggle('on',s.options[i].value==s.value))}
+[...s.options].forEach(o=>{const b=document.createElement('button');b.textContent=o.text;b.onclick=()=>{s.value=o.value;sync();s.oninput&&s.oninput()};w.append(b)});s.after(w);sync()});
+document.querySelector('video').addEventListener('loadedmetadata',()=>{document.getElementById('empty').style.display='none'});
+</script></body></html>
